@@ -3,5 +3,15 @@
 - version: v1alpha1
   group: app.example.com
   kind: App
-  role: app
+  role: /opt/ansible/roles/app
+  maxRunnerArtifacts: 30
+  reconcilePeriod: 5s
+
+- version: v1alpha1
+  group: app.example.com
+  kind: AppDB
+  role: /opt/ansible/roles/appdb
+  maxRunnerArtifacts: 30
+  reconcilePeriod: 5s
+
 # +kubebuilder:scaffold:watch
