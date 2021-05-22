@@ -1,2 +1,7 @@
 ---
-# defaults file for App
+# defaults file for app
+dbpassword: 'password'
+dbadminpasswd: 'admin-password'
+artemisName: 'amq-artemis'
+dbname: 'sampledb'
+dbuser: 'mongo-user'
