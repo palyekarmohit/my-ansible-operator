@@ -3,4 +3,4 @@ kind: App
 metadata:
   name: app-sample
 spec:
-  size:3
+  size: 3
