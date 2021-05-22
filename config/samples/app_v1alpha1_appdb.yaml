@@ -1,0 +1,8 @@
+apiVersion: app.example.com/v1alpha1
+kind: AppDB
+metadata:
+  name: appdb-sample
+spec:
+  size:3
+  storage_class_name: 'managed_premium'
+  image: image-registry.openshift-image-registry.svc:5000/openshift/mongodb:3.6
