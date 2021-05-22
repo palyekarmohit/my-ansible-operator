@@ -3,6 +3,7 @@ kind: AppDB
 metadata:
   name: appdb-sample
 spec:
-  size:3
-  storage_class_name: 'managed_premium'
+  # Add fields here
+  size: 3
+  storage_class_name: 'managed-premium'
   image: image-registry.openshift-image-registry.svc:5000/openshift/mongodb:3.6
