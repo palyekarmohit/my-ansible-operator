@@ -1,2 +1,61 @@
 ---
-# tasks file for App
+
+- name: Create secrets
+  k8s:
+   definition:
+     kind: secret
+     apiVersion: v1
+     metadata:
+         name: mongodb-secret
+     type: Opaque
+     data:
+         username: dXNlcm5hbWU=
+         password: cGFzc3dvcmQ=
+
+---         
+
+- name: Create app Secret with mongo credentials
+  k8s:
+    definition:
+        kind: Deployment
+        apiVersion: apps/v1
+        metadata:
+          name: user-api
+          labels:
+            app: user-api
+        spec:
+          selector:
+            matchLabels:
+              app: user-api
+          template:
+            metadata:
+              labels:
+                app: user-api
+            spec:
+              containers:
+                - name: user-api
+                  image: mohitpalyekar/user-api:latest
+                  imagePullPolicy: Always
+                  env:
+                    - name: MONGO_DB_USERNAME
+                      valueFrom:
+                        secretKeyRef:
+                          name: mongodb-secret
+                          key: username
+                    - name: MONGO_DB_PWD
+                      valueFrom:
+                        secretKeyRef:
+                          name: mongodb-secret
+                          key: password
+                    - name: DB_URL
+                      valueFrom:
+                        configMapKeyRef:
+                          name: mongodb-configmap
+                          key: db_host
+                    - name: DB_NAME
+                      valueFrom:
+                        configMapKeyRef:
+                          name: mongodb-configmap
+                          key: db_name      
+                  ports:
+                    - containerPort: 3000
