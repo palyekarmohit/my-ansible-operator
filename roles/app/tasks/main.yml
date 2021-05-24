@@ -24,6 +24,7 @@
           labels:
             app: user-api
         spec:
+          replicas: "{{size}}"
           selector:
             matchLabels:
               app: user-api
