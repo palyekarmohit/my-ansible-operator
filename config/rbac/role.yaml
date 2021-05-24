@@ -14,7 +14,7 @@ rules:
       - pods
       - pods/exec
       - pods/log
-      - deployments
+      - deployment
       - roles
       - persistentvolumeclaims
       - configmaps
